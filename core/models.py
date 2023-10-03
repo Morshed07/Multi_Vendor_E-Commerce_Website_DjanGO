@@ -5,3 +5,5 @@ from django.db import models
 
 class Main_Category(models.Model)
     title = models.CharField
+
+class Category
