@@ -12,7 +12,6 @@ from django.views.generic import (
 from .models import (
     Category,
     Product,
-    Banner
 
 )
 
@@ -21,7 +20,7 @@ class Home(TemplateView):
 
     def get_context_data(self, **kwargs):
         context  = super().get_context_data(**kwargs)
-        context['products'] = Category.objects.all()
+        # context['products'] = Category.objects.all()
         
         context.update(
             {
