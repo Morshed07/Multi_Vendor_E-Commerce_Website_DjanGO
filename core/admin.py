@@ -12,10 +12,19 @@ from .models import(
     Main_Category,
     AdditionalInformations,
     Sections,
+    Slider,
+    TopBanner,
+
 
 )
 
 # Register your models here.
+
+class SliderAdmin(admin.ModelAdmin):
+    list_display = ['brand','title','slider_images','active','date']
+
+class TopBannerAdmin(admin.ModelAdmin):
+    list_display = ['title','topbanner_images','active','date']
 
 class ProductImagesAdmin(admin.TabularInline):
     model = ProductImages
@@ -25,7 +34,8 @@ class AdditionalInformationAdmin(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImagesAdmin, AdditionalInformationAdmin]
     prepopulated_fields = {"slug": ('title',)}
-    list_display = ['user','title','product_image','price', 'featured', 'product_status',]
+    list_display = ['user','title','product_image','price', 'product_status','section']
+    # list_editable = ['section','product_status']
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ('title',)}
@@ -56,6 +66,8 @@ class AddressAdmin(admin.ModelAdmin):
     list_display = ['user','address','status']
 
 admin.site.register(Sections)
+admin.site.register(Slider,SliderAdmin)
+admin.site.register(TopBanner,TopBannerAdmin)
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Vendor,VendorAdmin)
 admin.site.register(Category,CategoryAdmin)

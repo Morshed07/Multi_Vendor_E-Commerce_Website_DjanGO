@@ -115,6 +115,10 @@ class Tags(models.Model):
     pass
 class Sections(models.Model):
     title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+    
     
 class Product(models.Model):
     pid = ShortUUIDField(
@@ -140,7 +144,6 @@ class Product(models.Model):
     section = models.ForeignKey(Sections, on_delete=models.CASCADE, blank=True, null=True)
     status = models.BooleanField(default=True)
     in_stock = models.BooleanField(default=True)
-    featured = models.BooleanField(default=False)
     digital = models.BooleanField(default=False)
 
     sku = ShortUUIDField(
@@ -247,3 +250,37 @@ class Address(models.Model):
 
     class Meta:
         verbose_name_plural = 'Addresses'
+
+class Slider(models.Model):
+    brand = models.CharField(max_length=50,blank=True,null=True)
+    title = models.CharField(max_length=100,blank=True,null=True)
+    slogan = models.CharField(max_length=100,blank=True,null=True)
+    image = models.ImageField(upload_to='sliders')
+    active = models.BooleanField(default=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Sliders'
+
+    def slider_images(self):
+        return mark_safe('<img src="/media/%s" width = "70 height = "70" />' % (self.image))
+    
+    def __str__(self) -> str:
+        return self.brand
+    
+class TopBanner(models.Model):
+    type = models.CharField(max_length=50,blank=True,null=True)
+    title = models.CharField(max_length=100,blank=True,null=True)
+    deal_percent = models.CharField(max_length=10,blank=True,null=True)
+    image = models.ImageField(upload_to='topbanners')
+    active = models.BooleanField(default=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Top Banners'
+
+    def topbanner_images(self):
+        return mark_safe('<img src="/media/%s" width = "70 height = "70" />' % (self.image))
+    
+    def __str__(self) -> str:
+        return self.title

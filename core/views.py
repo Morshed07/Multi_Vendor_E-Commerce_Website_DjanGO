@@ -10,27 +10,30 @@ from django.views.generic import (
     View
 )
 from .models import (
+    Main_Category,
     Category,
     Product,
-
+    Slider,
+    TopBanner
+    
 )
 
 class Home(TemplateView):
     template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
-        context  = super().get_context_data(**kwargs)
-        # context['products'] = Category.objects.all()
+        context  = super().get_context_data(**kwargs) 
+        context['products'] = Product.objects.all()
         
         context.update(
             {
-                # 'featured_categories' : Category.objects.filter(featured=True),
-                # 'featured_products' : Product.objects.filter(featured=True),
-                # 'products' : Product.objects.all(),
-                # 'top_rated': Product.objects.filter(top_rated = True),
-                # 'on_sale' : Product.objects.filter(on_sale = True),
-                # 'banners' : Banner.objects.filter(active=True)
-                
+                "maincats": Main_Category.objects.all(),
+                "sliders" : Slider.objects.filter(active=True)[0:3],
+                "topbanners" : TopBanner.objects.filter(active=True)[0:10],
+                "featured_categories": Category.objects.filter(featured=True),
+                # "featured_products" : Product.objects.filter(featured=True),    
+                "top_rated": Product.objects.filter(section__title="Top-Rated"),
+                "on_sale": Product.objects.filter(section__title="On-Sale")
             }
         )
         return context
