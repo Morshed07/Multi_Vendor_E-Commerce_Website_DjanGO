@@ -7,7 +7,7 @@ from django.views.generic import (
     TemplateView,
     DetailView,
     ListView,
-    View
+    View,
 )
 from .models import (
     Main_Category,
@@ -31,7 +31,7 @@ class Home(TemplateView):
                 "sliders" : Slider.objects.filter(active=True)[0:3],
                 "topbanners" : TopBanner.objects.filter(active=True)[0:10],
                 "featured_categories": Category.objects.filter(featured=True),
-                # "featured_products" : Product.objects.filter(featured=True),    
+                "featured_products" : Product.objects.filter(section__title="Featured"),    
                 "top_rated": Product.objects.filter(section__title="Top-Rated"),
                 "on_sale": Product.objects.filter(section__title="On-Sale")
             }
