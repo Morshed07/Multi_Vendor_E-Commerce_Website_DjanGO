@@ -171,7 +171,8 @@
             $body.trigger( 'open-overlay',[class_name]);
         }
     });
-
+   
+    
     $document.on('click','.biolife-mobile-panels .biolife-close-btn, .biolife-panels-actions-wrap .biolife-close-btn, .btn-close-quickview', function (e){
         e.preventDefault();
         let class_name = $(this).attr('data-object');

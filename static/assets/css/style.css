@@ -2148,7 +2148,7 @@ body.open-mobile-search .header-area.layout-02{
     display: inline-block;
     float: left;
     clear: left;
-    min-width: 54px;
+    min-width: 30px;
     border-radius: 3px;
     text-align: center;
     font-size: 14px;
