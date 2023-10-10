@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-
+{% load static %}
 
 
 
 {% block content %}
-<div class="hero-section hero-background">
+<div class="hero-section hero-background ">
+    
     <h1 class="page-title">All Products</h1>
 </div>
 
@@ -106,14 +107,14 @@
                                     <div class="product-thumb">
                                         <div class="labels">
                                             {% if product.old_price %}
-                                                <span class="sale-label">-{{product.get_percetage|floatformat:0}}%</span>
+                                                <span class="sale-label">-{{product.get_percentage|floatformat:0}}%</span>
                                                 {% endif %}
                                         </div>
                                         
                                             
                                         
                                         <a href="{% url 'product-details' product.slug %}" class="link-to-product">
-                                            <img src="{{product.image.url}}" alt="dd" width="270" height="270" class="product-thumnail">
+                                            <img src="{{product.image.url}}" alt="dd" style="height: 270px; width: 270px;" class="product-thumnail">
                                         </a>
                                     </div>
                                     

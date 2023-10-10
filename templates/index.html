@@ -289,14 +289,19 @@
                                     <li class="product-item">
                                         <div class="contain-product layout-default">
                                             <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img  src="{{fp.image.url}}" alt="Vegetables" width="270" height="270" class="product-thumnail">
+                                                <div class="labels">
+                                                    {% if fp.old_price %}
+                                                        <span class="sale-label">-{{fp.get_percentage|floatformat:0}}%</span>
+                                                        {% endif %}
+                                                </div>
+                                                <a href="{% url 'product-details' fp.slug %}" class="link-to-product">
+                                                    <img src="{{ fp.image.url }}" alt="Vegetables" style="height: 270px; width: 270px;" class="product-thumbnail">
                                                 </a>
                                                 
                                             </div>
                                             <div class="info">
                                                 <b class="categories">{{fp.category}}</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">{{fp.title |truncatewords:10}}</a></h4>
+                                                <h4 class="product-title"><a href="{% url 'product-details' fp.slug %}" class="pr-name">{{fp.title |truncatewords:10}}</a></h4>
                                                 <div class="price ">
                                                     <ins><span class="price-amount"><span class="currencySymbol">$</span>{{fp.price}}</span></ins>
                                                     <del><span class="price-amount"><span class="currencySymbol">$</span>{{fp.old_price}}</span></del>
@@ -321,14 +326,19 @@
                                     <li class="product-item">
                                         <div class="contain-product layout-default">
                                             <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="{{trp.image.url}}" alt="Vegetables" width="270" height="270" class="product-thumnail">
+                                                <div class="labels">
+                                                    {% if trp.old_price %}
+                                                        <span class="sale-label">-{{trp.get_percentage|floatformat:0}}%</span>
+                                                        {% endif %}
+                                                </div>
+                                                <a href="{% url 'product-details' trp.slug %}" class="link-to-product">
+                                                    <img src="{{trp.image.url}}" alt="Vegetables" style="height: 270px; width: 270px;" class="product-thumnail">
                                                 </a>
                                                 
                                             </div>
                                             <div class="info">
                                                 <b class="categories">{{trp.category}}</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">{{trp.title|truncatewords:10}}</a></h4>
+                                                <h4 class="product-title"><a href="{% url 'product-details' trp.slug %}" class="pr-name">{{trp.title|truncatewords:10}}</a></h4>
                                                 <div class="price ">
                                                     <ins><span class="price-amount"><span class="currencySymbol">$</span>{{trp.price}}</span></ins>
                                                     {% if trp.old_price %}
@@ -355,14 +365,19 @@
                                     <li class="product-item">
                                         <div class="contain-product layout-default">
                                             <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="{{osp.image.url}}" alt="Vegetables" width="270" height="270" class="product-thumnail">
+                                                <div class="labels">
+                                                    {% if osp.old_price %}
+                                                        <span class="sale-label">-{{osp.get_percentage|floatformat:0}}%</span>
+                                                        {% endif %}
+                                                </div>
+                                                <a href="{% url 'product-details' osp.slug %}" class="link-to-product">
+                                                    <img src="{{osp.image.url}}" alt="Vegetables" style="height: 270px; width: 270px;" class="product-thumnail">
                                                 </a>
                                             
                                             </div>
                                             <div class="info">
                                                 <b class="categories">{{osp.category}}</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">{{osp.title|truncatewords:10}}</a></h4>
+                                                <h4 class="product-title"><a href="{% url 'product-details' osp.slug %}" class="pr-name">{{osp.title|truncatewords:10}}</a></h4>
                                                 <div class="price ">
                                                     <ins><span class="price-amount"><span class="currencySymbol">$</span>{{osp.price}}</span></ins>
                                                     <del><span class="price-amount"><span class="currencySymbol">$</span>{{osp.old_price}}</span></del>
@@ -473,6 +488,11 @@
                                 <li class="product-item">
                                     <div class="contain-product layout-default">
                                         <div class="product-thumb">
+                                            <div class="labels">
+                                                
+                                                    <span class="sale-label">-14%</span>
+                                                    
+                                            </div>
                                             <a href="#" class="link-to-product">
                                                 <img src="{% static 'assets/images/products/p-23.jpg' %}" alt="Vegetables" width="270" height="270" class="product-thumnail">
                                             </a>
@@ -717,6 +737,11 @@
                                 <li class="product-item">
                                     <div class="contain-product contain-product__right-info-layout2">
                                         <div class="product-thumb">
+                                            <div class="labels">
+                                                {% if product.old_price %}
+                                                    <span class="sale-label">-{{product.get_percentage|floatformat:0}}%</span>
+                                                    {% endif %}
+                                            </div>
                                             <a href="#" class="link-to-product">
                                                 <img src="{% static 'assets/images/home-04/pr-100-07.jpg' %}" alt="Vegetables" width="100" height="100" class="product-thumnail">
                                             </a>

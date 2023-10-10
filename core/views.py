@@ -51,14 +51,6 @@ class ProductListView(ListView):
         return super().get_context_data(**kwargs)
         
 
-# def ProductDetails(request, pid):
-#     product = Product.objects.get(pid=pid)
-    
-#     context = {
-#         "product": product,
-        
-#     }
-#     return render(request,"products/product_details.html",context)
 
 class ProductDetails(DetailView):
     model = Product

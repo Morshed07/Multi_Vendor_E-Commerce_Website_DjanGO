@@ -21,21 +21,19 @@
             <!-- summary info -->
             <div class="sumary-product single-layout">
                 <div class="media">
-                    
-                    <ul class="biolife-carousel slider-for" data-slick='{"arrows":false,"dots":false,"slidesMargin":30,"slidesToShow":1,"slidesToScroll":1,"fade":true,"asNavFor":".slider-nav"}'>
-
-                        <li><img src="{{product.image.url}}" alt="" width="500" height="500"></li>
-
+                    <!-- Main Image Carousel -->
+                    <ul class="biolife-carousel slider-for" id="main-carousel" data-slick='{"arrows":false,"dots":false,"slidesMargin":30,"slidesToShow":1,"slidesToScroll":1,"fade":true}'>
+                        <li><img src="{{ product.image.url }}" alt="" width="500" height="500"></li>
                     </ul>
-                    
-                    <ul class="biolife-carousel slider-nav" data-slick='{"arrows":false,"dots":false,"centerMode":false,"focusOnSelect":true,"slidesMargin":10,"slidesToShow":4,"slidesToScroll":1,"asNavFor":".slider-for"}'>
-                        {% for pimg in images %}  
-
-                        <li><img src="{{pimg.images.url}}" alt="" width="88" height="88"></li>
+                
+                    <!-- Thumbnail Carousel -->
+                    <ul class="biolife-carousel slider-nav" id="thumbnail-carousel" data-slick='{"arrows":false,"dots":false,"centerMode":false,"focusOnSelect":true,"slidesMargin":10,"slidesToShow":4,"slidesToScroll":1}'>
+                        {% for pimg in images %}
+                            <li id="thumbnail-{{ pimg.id }}"><img src="{{ pimg.images.url }}" alt="" width="88" height="88"></li>
                         {% endfor %}
                     </ul>
-                    
                 </div>
+                
                 
                 <div class="product-attribute">
                     <h3 class="title">{{product.title}}</h3>
