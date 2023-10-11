@@ -1,15 +1,14 @@
-
+from django.shortcuts import get_object_or_404
 from django.db.models import Count
 from django.forms import SlugField
 from django.shortcuts import render
 from django.db.models import Q
 from typing import Any, Dict, Self
-from django.shortcuts import render
+from taggit.models import Tag
 from django.views.generic import (
     TemplateView,
     DetailView,
     ListView,
-    View,
 )
 from .models import (
     Main_Category,
@@ -18,8 +17,7 @@ from .models import (
     Slider,
     TopBanner,
     ProductImages,
-    AdditionalInformations
-    
+    AdditionalInformations,
 )
 
 class HomeView(TemplateView):
@@ -64,7 +62,18 @@ class ProductDetails(DetailView):
         context['add_inform'] = AdditionalInformations.objects.filter(product=self.object)
         return context
     
-    
+def Tag_List(request, tag_slug=None):
+    products = Product.objects.filter(product_status = "published").order_by("-id")
 
+    tag = None
+    if tag_slug :
+        tag = get_object_or_404(Tag, slug = tag_slug)
+        products= Product.objects.filter(tags__in=[tag])
+
+        context = {
+            "products" : products,
+            "tag": tag
+        }
+    return render(request,'products/tag_products.html',context)
 
         

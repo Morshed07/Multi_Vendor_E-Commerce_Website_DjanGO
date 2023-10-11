@@ -3,7 +3,7 @@ from ckeditor.fields import RichTextField
 from shortuuid.django_fields import ShortUUIDField
 from django.utils.safestring import mark_safe
 from userauths.models import User
-
+from taggit.managers import TaggableManager
 
 # Create your models here.
 
@@ -38,7 +38,7 @@ class Main_Category(models.Model):
     mcid = ShortUUIDField(
         length=5,
         max_length=10,
-        prefix="mcat_",
+        prefix="mcat",
         alphabet="abcdefg1234",
         unique = True
     )
@@ -56,7 +56,7 @@ class Category(models.Model):
     cid = ShortUUIDField(
         length=12,
         max_length=20,
-        prefix="cat_",
+        prefix="cat",
         alphabet="abcdefg1234",
         unique = True
     )
@@ -83,7 +83,7 @@ class Vendor(models.Model):
     vid = ShortUUIDField(
         length=12,
         max_length=20,
-        prefix="ven_",
+        prefix="ven",
         alphabet="abcdefg1234",
         unique = True
     )
@@ -124,8 +124,7 @@ class Product(models.Model):
     pid = ShortUUIDField(
         length=12,
         max_length=20,
-        prefix="pro_",
-        alphabet="abcdefg1234",
+        alphabet="abcdefgh12345",
         unique = True
     )
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products")
@@ -139,7 +138,7 @@ class Product(models.Model):
     old_price = models.IntegerField(default="0")
     product_description = RichTextField(null=True,blank=True)
     
-    # tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
+    tags = TaggableManager(blank=True)
     product_status = models.CharField(choices=STATUS, max_length=10, default='in_review')
     section = models.ForeignKey(Sections, on_delete=models.CASCADE, blank=True, null=True)
     status = models.BooleanField(default=True)
@@ -147,7 +146,7 @@ class Product(models.Model):
     digital = models.BooleanField(default=False)
 
     sku = ShortUUIDField(
-        length=6,
+        length=8,
         max_length=10,
         alphabet="12345ABCDEFGH",
         unique = True,

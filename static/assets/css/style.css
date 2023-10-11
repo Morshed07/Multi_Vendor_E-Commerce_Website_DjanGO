@@ -978,6 +978,8 @@ body{
     display: inline-block;
     margin-left: 4px;
 }
+/* <!--------login&signup----------> */
+
 .header-area .primary-menu>ul>li>a{
     color: #222222;
     font-size: 17px;
@@ -14422,6 +14424,7 @@ body.open-quickview-block .biolife-quickview-block{
         margin-top: 59px;
     }
 }
+
 
 /*==============================*/
 @media ( min-width: 768px) and ( max-width: 1199px) {

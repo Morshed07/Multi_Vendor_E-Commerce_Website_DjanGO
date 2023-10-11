@@ -38,9 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    ##3rd_party_app##
+    'ckeditor',
+    'taggit',
+
+
+    #added_app_manually#
     'core',
     'userauths',
-    'ckeditor'
+    
     
 ]
 

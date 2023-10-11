@@ -32,7 +32,7 @@ class Login(LogoutRequiredMixin, generic.View):
         context = {
             "form": form
         }
-        return render(self.request, 'account/login.html', context)
+        return render(self.request, 'accounts/login.html', context)
 
     def post(self, *args, **kwargs):
         form = LoginForm(self.request.POST)

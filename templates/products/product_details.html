@@ -63,8 +63,8 @@
                         </div>
                     </div>
                     <div class="shipping-info">
-                        <p class="shipping-day">3-Day Shipping</p>
-                        <p class="for-today">Pree Pickup Today</p>
+                        <p class="shipping-day"> <b>Tags :<b></p>
+                        <p class="for-today">{% for tag in product.tags.all %} <a href="{% url 'tag-products-list' tag.slug %}">#{{tag.name}}&nbsp;</a> {% endfor %}</p>
                     </div>
                 </div>
                 
