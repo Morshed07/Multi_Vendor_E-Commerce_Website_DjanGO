@@ -64,7 +64,7 @@ class Logout(generic.View):
 
 @method_decorator(never_cache, name='dispatch')
 class Registration(LogoutRequiredMixin, generic.CreateView):
-    template_name = 'account/registration.html'
+    template_name = 'accounts/registration.html'
     form_class = UserRegistrationForm
     success_url = reverse_lazy('login')
 
