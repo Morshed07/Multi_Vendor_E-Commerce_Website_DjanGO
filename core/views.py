@@ -9,6 +9,7 @@ from django.views.generic import (
     TemplateView,
     DetailView,
     ListView,
+    View,
 )
 from .models import (
     Main_Category,
@@ -76,4 +77,22 @@ def Tag_List(request, tag_slug=None):
         }
     return render(request,'products/tag_products.html',context)
 
+
+
+
+class SearchProducts(View):
+    def get(self, request, *args, **kwargs):
+        products = Product.objects.filter(product_status = "published").order_by("-id")
+        query = request.GET.get('s')
+        if query:
+            products = products.filter(
+                Q(title__icontains=query) |
+                Q(category__title__icontains=query)
+            )
+        context = {
+            "products" : products,
+            "query" : query
+        }
         
+        return render(request,'products/search_products.html',context)
+
